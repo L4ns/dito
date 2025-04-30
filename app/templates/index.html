@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Transkrip Audio</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dito Transkrip Bot</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
-<body class="bg-gray-900 text-white">
-  <div class="max-w-2xl mx-auto p-4">
-    <h1 class="text-3xl font-bold mb-4">🔊 Transkripsi Audio</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data" class="space-y-4">
-      <input type="file" name="file" accept="audio/*" required class="bg-gray-800 border p-2 w-full">
-      <button type="submit" class="bg-purple-600 px-4 py-2 rounded shadow">Unggah & Transkrip</button>
-    </form>
+<body>
+    <div class="container fade-in">
+        <h1 class="title">🎧 Dito - Bot Transkripsi Audio</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="file" accept="audio/*" required>
+            <button type="submit">Unggah & Transkrip</button>
+        </form>
 
-    {% if transcript %}
-      <div class="mt-8">
-        <h2 class="text-xl font-semibold mb-2">📝 Hasil Transkrip:</h2>
-        <div id="typing" class="bg-gray-800 p-4 rounded"></div>
-      </div>
-      <script>
-        const text = {{ transcript|tojson }};
-        let i = 0;
-        const el = document.getElementById('typing');
-        function type() {
-          if (i < text.length) {
-            el.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, 15);
-          }
-        }
-        type();
-      </script>
-    {% endif %}
-  </div>
+        {% if transcript %}
+        <div class="result fade-in">
+            <h2>📝 Hasil Transkrip</h2>
+            <table>
+                <tr>
+                    <td><span id="typed"></span></td>
+                </tr>
+            </table>
+        </div>
+        <script>
+            const text = `{{ transcript | safe }}`;
+            let i = 0;
+            const speed = 25;
+
+            function typeWriter() {
+                if (i < text.length) {
+                    document.getElementById("typed").innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+
+            window.onload = typeWriter;
+        </script>
+        {% endif %}
+    </div>
 </body>
 </html>

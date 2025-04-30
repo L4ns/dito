@@ -1,7 +1,9 @@
 fastapi
 uvicorn
-jinja2
 aiofiles
-whisper
+jinja2
 python-multipart
-torch
+openai-whisper==20240930
+python-telegram-bot==20.7
+httpx>=0.25.2,<0.26
+
