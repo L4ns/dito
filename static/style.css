@@ -1,31 +1,88 @@
+/* Web3-style CSS + efek animasi */
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #0f0f0f;
-  color: #fff;
-  padding: 2rem;
-}
-.container {
-  max-width: 600px;
-  margin: auto;
-  background: #1e1e1e;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 20px #00ffe0;
-}
-button {
-  background: #00ffe0;
-  color: #000;
-  padding: 10px 20px;
-  border: none;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-}
-#typing {
-  border-top: 1px solid #444;
-  margin-top: 20px;
-  padding-top: 20px;
-  font-family: monospace;
-  white-space: pre-wrap;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(145deg, #1e1e2f, #2a2a40);
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    scroll-behavior: smooth;
 }
 
+.container {
+    width: 95%;
+    max-width: 600px;
+    margin-top: 40px;
+    padding: 30px;
+    background: #26263a;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #a78bfa;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.upload-form input[type="file"] {
+    background: #1e1e2f;
+    padding: 10px;
+    border-radius: 8px;
+    color: #f0f0f0;
+    border: 1px solid #4b5563;
+}
+
+.upload-form button {
+    background-color: #7c3aed;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-form button:hover {
+    background-color: #9333ea;
+    transform: scale(1.05);
+}
+
+.result {
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1f1f30;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Animasi fade-in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
